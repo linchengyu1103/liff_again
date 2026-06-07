@@ -16,13 +16,13 @@
 	</style>
 </head>
 <body>
-	<button id="btnShare" onclick="sendShare_Gift()" style="display: none;margin: 20px auto;padding: 20px;">vote</button>
+	<button id="btnShare" onclick="sendShare_vote()" style="display: none;margin: 20px auto;padding: 20px;">vote</button>
 	<button id="btnLogin" onclick="liff.login()" style="display: none;margin: 20px auto;padding: 20px;">Log In</button>
 	<button id="btnLogOut" onclick="logOut()" style="display: none;margin: 20px auto;padding: 20px;">Log Out</button>
 	<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 	<script>
 
-		async function sendShareVote(){
+		async function sendShare_vote(){
 			name = await liff.getProfile().then((profile) => {
 				return profile.displayName;
 			}).catch((err) => {
@@ -156,7 +156,7 @@ function logOut() {
 		}
 
 		async function main() {
-			await liff.init({ liffId: "2009696368-pZdCRnMF" })
+			await liff.init({ liffId: "2010318117-cu4KctEs" })
 			if (liff.isLoggedIn()) {
 				document.getElementById("btnShare").style.display = "block"
 				if (!liff.isInClient()) {

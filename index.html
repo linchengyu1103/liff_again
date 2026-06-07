@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+	<title>My LIFF App3</title>
+	<style>
+		button {
+			display: none;
+			width: 50%;
+			height: 10%;
+			padding: 16px 0;
+			margin: auto 0;
+		}
+	</style>
+</head>
+<body>
+	<button id="btnShare" onclick="sendShare_Gift()" style="display: none;margin: 20px auto;padding: 20px;">vote</button>
+	<button id="btnLogin" onclick="liff.login()" style="display: none;margin: 20px auto;padding: 20px;">Log In</button>
+	<button id="btnLogOut" onclick="logOut()" style="display: none;margin: 20px auto;padding: 20px;">Log Out</button>
+	<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+	<script>
+
+		async function sendShareVote(){
+			name = await liff.getProfile().then((profile) => {
+				return profile.displayName;
+			}).catch((err) => {
+				return err;
+			});1
+
+			const result = await liff.shareTargetPicker([
+              {
+  "type": "bubble",
+  "size": "kilo",
+  "hero": {
+    "type": "image",
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover",
+    "action": {
+      "type": "uri",
+      "uri": "https://line.me/"
+    },
+    "url": "https://drive.google.com/thumbnail?id=1Y3N3og1hFjVGZ5JjtWWZeUY_H6e_HTi7"
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "[投票] 7/9~7/11送舊去不去",
+        "margin": "none",
+        "size": "md",
+        "weight": "bold",
+        "style": "normal",
+        "decoration": "none",
+        "position": "relative",
+        "align": "start",
+        "gravity": "top",
+        "scaling": true,
+        "offsetTop": "none",
+        "offsetBottom": "xxl",
+        "offsetStart": "none",
+        "offsetEnd": "sm"
+      },
+      {
+        "type": "text",
+        "text": "請前往投票頁面中投票",
+        "margin": "lg",
+        "size": "xs",
+        "weight": "regular",
+        "style": "normal",
+        "color": "#5B5B5B"
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "height": "md",
+        "action": {
+          "type": "uri",
+          "label": "立即投票",
+          "uri": "https://line.me/"
+        },
+        "position": "relative",
+        "margin": "xl",
+        "offsetTop": "none",
+        "offsetBottom": "xl"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "icon",
+            "url": "https://drive.google.com/thumbnail?id=1G9DmRFkKxegZkFdMGjYFK5TkPDvI9a0e",
+            "margin": "sm",
+            "offsetTop": "sm",
+            "size": "xxs"
+          },
+          {
+            "type": "text",
+            "text": "投票",
+            "size": "xxs",
+            "margin": "md",
+            "color": "#9D9D9D",
+            "offsetTop": "xs"
+          },
+          {
+            "type": "icon",
+            "url": "https://imgur.com/aKbXQ9D.png",
+            "size": "xxs",
+            "margin": "none",
+            "offsetTop": "sm"
+          }
+        ],
+        "spacing": "none",
+        "position": "relative",
+        "cornerRadius": "none",
+        "offsetTop": "none"
+      }
+    ],
+    "flex": 0
+  }
+}
+])
+			if (result) {
+				alert(`[${result.status}] Message sent!`)
+			} else {
+				const [majorVer, minorVer, patchVer] = (liff.getLineVersion() || "").split('.');
+
+				if (minorVer === undefined) {
+					alert('ShareTargetPicker was canceled in external browser')
+					return
+				}
+
+				if (parseInt(majorVer) >= 10 && parseInt(minorVer) >= 10 && parseInt(patchVer) > 0) {
+					alert('ShareTargetPicker was canceled in LINE app')
+				}
+			}
+		}
+function logOut() {
+			liff.logout()
+			window.location.reload()
+		}
+
+		async function main() {
+			await liff.init({ liffId: "2009696368-pZdCRnMF" })
+			if (liff.isLoggedIn()) {
+				document.getElementById("btnShare").style.display = "block"
+				if (!liff.isInClient()) {
+					document.getElementById("btnLogOut").style.display = "block"
+				}
+			} else {
+				document.getElementById("btnLogin").style.display = "block"
+			}
+		}
+		main()
+	</script>
+</body>
+
+</html>

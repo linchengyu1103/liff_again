@@ -17,6 +17,7 @@
 </head>
 <body>
 	<button id="btnShare" onclick="sendShare_vote()" style="display: none;margin: 20px auto;padding: 20px;">vote</button>
+	<!-- 這裡可以增加按鈕 -->
 	<button id="btnLogin" onclick="liff.login()" style="display: none;margin: 20px auto;padding: 20px;">Log In</button>
 	<button id="btnLogOut" onclick="logOut()" style="display: none;margin: 20px auto;padding: 20px;">Log Out</button>
 	<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
@@ -33,6 +34,8 @@
             {
 					"type": "flex",
 					"altText": "[投票] 7/9~7/11送舊去不去",
+				// 這裡可以修改收到的名稱，用name取得使用者(我)的暱稱 
+				
 					"contents":{
   "type": "bubble",
   "size": "kilo",
@@ -45,7 +48,7 @@
       "type": "uri",
       "uri": "https://line.me/"
     },
-    "url": "https://raw.githubusercontent.com/linchengyu1103/liff_again/refs/heads/main/line%20vote.png"
+    "url": "https://raw.githubusercontent.com/linchengyu1103/liff_again/refs/heads/main/line%20vote.png" 
   },
   "body": {
     "type": "box",
@@ -53,7 +56,7 @@
     "contents": [
       {
         "type": "text",
-        "text": "[投票] 7/9~7/11送舊去不去",
+        "text": "[投票] 7/9~7/11送舊去不去", //改名稱
         "margin": "none",
         "size": "md",
         "weight": "bold",

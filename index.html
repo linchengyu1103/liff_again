@@ -34,7 +34,7 @@
             {
 					"type": "flex",
 					"altText": "[投票] 7/9~7/11送舊去不去",
-				// 這裡可以修改收到的名稱，用name取得使用者(我)的暱稱 
+				// 這裡可以修改收到時的訊息，用name取得使用者(我)的暱稱 
 				
 					"contents":{
   "type": "bubble",
@@ -46,7 +46,7 @@
     "aspectMode": "cover",
     "action": {
       "type": "uri",
-      "uri": "https://line.me/"
+      "uri": "https://line.me/" //更改連結
     },
     "url": "https://raw.githubusercontent.com/linchengyu1103/liff_again/refs/heads/main/line%20vote.png" 
   },
@@ -93,7 +93,7 @@
         "action": {
           "type": "uri",
           "label": "立即投票",
-          "uri": "https://line.me/"
+          "uri": "https://line.me/" //更改連結
         },
         "position": "relative",
         "margin": "xl",
@@ -142,6 +142,7 @@
 }
 						}
 ])
+// 新增的按鈕樣式放在這裡
 			if (result) {
 				alert(`[${result.status}] Message sent!`)
 			} else {
@@ -166,6 +167,7 @@ function logOut() {
 			await liff.init({ liffId: "2010318117-cu4KctEs" })
 			if (liff.isLoggedIn()) {
 				document.getElementById("btnShare").style.display = "block"
+				// 可以新增按鈕的顯示
 				if (!liff.isInClient()) {
 					document.getElementById("btnLogOut").style.display = "block"
 				}

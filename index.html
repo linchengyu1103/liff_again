@@ -299,6 +299,143 @@ async function sendShare_VoteAugMom(){
 				}
 			}
 		}
+
+		async function sendShare_VoteAugLal(){
+			name = await liff.getProfile().then((profile) => {
+				return profile.displayName;
+			}).catch((err) => {
+				return err;
+			});
+
+			const result = await liff.shareTargetPicker([
+            {
+					"type": "flex",
+					"altText": "[投票] 8月可以的時間",
+				// 這裡可以修改收到時的訊息，用name取得使用者(我)的暱稱 
+				
+					"contents":{
+  "type": "bubble",
+  "size": "kilo",
+  "hero": {
+    "type": "image",
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover",
+    "action": {
+      "type": "uri",
+      "uri": "https://liff.line.me/2010318117-3e4BgLeQ?auto=yes&type=image&downloadUrl=https://i.imgur.com/vASFvRY.jpg&previewUrl=https://i.imgur.com/vASFvRY.jpg" 
+		//更改連結
+    },
+    "url": "https://raw.githubusercontent.com/linchengyu1103/liff_again/refs/heads/main/line%20vote.png" 
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "[投票] 8月可以的時間", //改名稱
+        "margin": "none",
+        "size": "md",
+        "weight": "bold",
+        "style": "normal",
+        "decoration": "none",
+        "position": "relative",
+        "align": "start",
+        "gravity": "top",
+        "scaling": true,
+        "offsetTop": "none",
+        "offsetBottom": "xxl",
+        "offsetStart": "none",
+        "offsetEnd": "sm"
+      },
+      {
+        "type": "text",
+        "text": "請前往投票頁面中投票",
+        "margin": "lg",
+        "size": "xs",
+        "weight": "regular",
+        "style": "normal",
+        "color": "#5B5B5B"
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "height": "md",
+        "action": {
+          "type": "uri",
+          "label": "立即投票",
+          "uri": "https://liff.line.me/2010318117-3e4BgLeQ?auto=yes&type=image&downloadUrl=https://i.imgur.com/vASFvRY.jpg&previewUrl=https://i.imgur.com/vASFvRY.jpg" 
+			//更改連結
+        },
+        "position": "relative",
+        "margin": "xl",
+        "offsetTop": "none",
+        "offsetBottom": "xl"
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "icon",
+            "url": "https://raw.githubusercontent.com/linchengyu1103/liff_again/refs/heads/main/%E6%8A%95%E7%A5%A8%E5%8B%BE.png",
+            "margin": "sm",
+            "offsetTop": "sm",
+            "size": "xxs"
+          },
+          {
+            "type": "text",
+            "text": "投票",
+            "size": "xxs",
+            "margin": "md",
+            "color": "#9D9D9D",
+            "offsetTop": "xs"
+          },
+          {
+            "type": "icon",
+            "url": "https://i.imgur.com/aKbXQ9D.png",
+            "size": "xxs",
+            "margin": "none",
+            "offsetTop": "sm"
+          }
+        ],
+        "spacing": "none",
+        "position": "relative",
+        "cornerRadius": "none",
+        "offsetTop": "none"
+      }
+    ],
+    "flex": 0
+  }
+}
+						}
+])
+			if (result) {
+				alert(`[${result.status}] Message sent!`)
+			} else {
+				const [majorVer, minorVer, patchVer] = (liff.getLineVersion() || "").split('.');
+
+				if (minorVer === undefined) {
+					alert('ShareTargetPicker was canceled in external browser')
+					return
+				}
+
+				if (parseInt(majorVer) >= 10 && parseInt(minorVer) >= 10 && parseInt(patchVer) > 0) {
+					alert('ShareTargetPicker was canceled in LINE app')
+				}
+			}
+		}
 		
 function logOut() {
 			liff.logout()
